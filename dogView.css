@@ -1,0 +1,69 @@
+
+.dog-container{
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.dog-container > div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 250px;
+    height: 250px;
+    border: 2px solid teal;
+    border-radius: 4px 8px;
+}
+
+.dog-container > div > img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    aspect-ratio: 1/1;
+}
+
+.dog-container > div > h2 {
+    color: teal;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    margin-top: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.hide-element {
+    display: none;
+}
+
+.back-button {
+    background: teal;
+	border: 2px solid teal;
+    color: white;
+    border-radius: 8px;
+    padding: 4px 8px;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.back-button:hover {
+    background-color: rgb(2, 95, 95);
+    transition: 0.5s;
+}

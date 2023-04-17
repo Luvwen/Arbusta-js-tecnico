@@ -38,10 +38,11 @@ fetch('https://dog.ceo/api/breeds/list')
     })
     .catch((err) => console.log(err));
 
-const createHtmlElement = (el, text, classname) => {
+const createHtmlElement = (el, text, classname, id) => {
     const newElement = document.createElement(el);
     newElement.innerText = text;
     newElement.className = classname;
+    newElement.id = id;
     return newElement;
 };
 
@@ -54,24 +55,25 @@ const populateHtml = () => {
         const initialLetter = createHtmlElement(
             'p',
             `${alphabet[j].charAt(0).toUpperCase()}:`,
-            'breed-initial'
+            'breed-initial',
+            `${alphabet[j]}`
         );
-        initialLetter.id = `${alphabet[j]}`;
-        columnList.appendChild(initialLetter);
 
         const breedContainer = createHtmlElement('div', '', 'container-list');
+        columnList.appendChild(initialLetter);
         columnList.appendChild(breedContainer);
 
         // Filter each breed with the current letter of the alphabet
         for (let i = 0; i < breed.length; i++) {
-            const breedListItem = createHtmlElement('li');
-            const breedLink = createHtmlElement('a', '', 'breed-link');
-
             if (breed[i].charAt(0) === alphabet[j]) {
+                const breedListItem = createHtmlElement(
+                    'li',
+                    breed[i].charAt(0).toUpperCase() + breed[i].slice(1),
+                    'breed-link__text'
+                );
+
+                const breedLink = createHtmlElement('a', '', 'breed-link');
                 breedLink.href = `./dogView.html?dogbreed=${breed[i]}`;
-                breedListItem.innerText =
-                    breed[i].charAt(0).toUpperCase() + breed[i].slice(1);
-                breedListItem.className = 'breed-link__text';
 
                 breedContainer
                     .appendChild(breedLink)
@@ -85,8 +87,7 @@ const populateHtml = () => {
                 'p',
                 `There are no breeds of dogs with the initial ${alphabet[
                     j
-                ].toUpperCase()}
-                 `,
+                ].toUpperCase()}`,
                 'no-breed-found'
             );
             initialLetter.nextSibling.appendChild(noBreedFound);
